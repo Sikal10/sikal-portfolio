@@ -1,0 +1,102 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const nodemailer = require('nodemailer');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser= require('body-parser');
+const enforce = require('express-sslify');
+
+if (process.env.NODE_ENV !== 'production' ) require('dotenv').config();// try do CORS i wan quickly make a call ok bro
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(cors({origin: 'http://localhost:3000'}))
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+// app.use(enforce.HTTPS({trustProtoHeader: true}));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+    })
+}
+
+app.get('/', (req, res) => {
+    console.log('GET request in place')
+    res.send({message: 'it works'})
+})
+
+app.post('/test', (req, res) => {
+    console.log("Request Body => ", req.body);
+    res.send({msg: "Tested"})
+});
+
+app.listen(port, err => {
+    if (err) throw err;
+    console.log('Server running on port ' + port)
+});
+
+app.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'))
+});
+
+app.post('/send', (req, res) => {
+    let name = req.body.name;
+    let email = req.body.email;
+    let subject = `Message from ${name}, through CodeSikal`;
+    let message = req.body.message;
+    let content = `name: ${name} \n email: ${email} \n message: ${message}`;//will will continue when you charge, and figure out how you will make sure your server and client are in the same project directory, else youwill h+
+
+
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'sikal.sikal.ss@gmail.com',
+            pass: 'Realmadrid7'
+        }
+    });
+
+    let mail = {
+        from: name,
+        to: 'sikal.sikal.ss@gmail.com',
+        subject: subject,
+        text: content
+    };
+
+    transporter.sendMail(mail, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.json({
+                msg: 'fail',
+                err
+            })
+        } else {
+            res.json({
+                msg: 'success'
+            })
+        }
+    });
+});
+
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+})
+
+app.use((err, req, res) => {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err: {};
+
+    res.status(err.status || 500);
+    res.render('error');
+});
+
