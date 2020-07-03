@@ -17,7 +17,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-// app.use(enforce.HTTPS({trustProtoHeader: true}));
+// app.use(enforce.HTTPS({trustProtoHeader: true})); //uncomment this when you deploy
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.send({message: 'it works'})
 })
 
-app.post('/test', (req, res) => {
+app.post('/test', (req, res) => {//you can remove and all other things u dont need
     console.log("Request Body => ", req.body);
     res.send({msg: "Tested"})
 });
@@ -59,14 +59,14 @@ app.post('/send', (req, res) => {
         port: 465,
         secure: true,
         auth: {
-            user: 'sikal.sikal.ss@gmail.com',
-            pass: 'Realmadrid7'
+            user: `${process.env.USER_EMAIL}`,
+            pass: `${process.env.USER_PASS}`,
         }
     });
 
     let mail = {
         from: name,
-        to: 'sikal.sikal.ss@gmail.com',
+        to: `${process.env.USER_EMAIL}`,
         subject: subject,
         text: content
     };
