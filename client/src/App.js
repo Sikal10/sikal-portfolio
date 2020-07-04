@@ -96,7 +96,7 @@ const App = ({location: {pathname}}) => {
         } else {
             setTimeout(() => {
                 let viewChildrenToggleActive = vc.current.childNodes;
-                vc.current.parentNode.parentNode.parentNode.style.backgroundColor = 'rgb(52, 17, 77)';
+                vc.current.parentNode.parentNode.parentNode.style.backgroundColor = 'rgb(0, 0, 0)';
                 navTopRef.current.classList.add('dark');
                 navBotRef.current.classList.add('dark');
                 loaderRef.current.classList.add('dark');
@@ -158,44 +158,6 @@ const App = ({location: {pathname}}) => {
             }
         })
     };
-
-    // const handleFormSubmit = async event => {
-    //     let url;
-    //     process.env.NODE_ENV === 'production' ? url = `https://codesikal.herokuapp.com/send`
-    //         : url = "http://localhost:8000/send";
-    //          const name = nameRef.current.value,
-    //             email = emailRef.current.value,
-    //             message = messageRef.current.value;
-    //
-    //              event.preventDefault()
-    //                 try {
-    //                     const response = await fetch(url || 'http://localhost:8000/send', {
-    //                         method: 'POST',
-    //                         headers: {
-    //                             'Content-Type': 'application/json'
-    //                         },
-    //                         body: {
-    //                             name,
-    //                             email,
-    //                             message
-    //                         }
-    //                     }).then(({body}) => {
-    //                         if (body.message === 'success') {
-    //                             createNotification('Message received, thank you.');
-    //                             setClearForm(true);
-    //                             setTimeout(() => {setClearForm(false)})
-    //                         } else if (body.message === 'fail') {
-    //                             createNotification(`Hmm... Something went wrong!`);
-    //                         }
-    //                     })
-    //                     const responseData = await response.json();
-    //                     console.log(responseData)
-    //
-    //                 } catch (err) {
-    //                         console.log(err)
-    //                 }
-    //
-    // }
 
     useEffect(() => {
         let themeButtonEffect = themeButton.current.classList;

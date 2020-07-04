@@ -1,7 +1,6 @@
 import React from "react";
 import Omnifood from "../../assets/work-images/OmniFood.png"
 import FaceApp from '../../assets/work-images/FaceApp.png'
-import EazyCommerce from '../../assets/work-images/EazyCommerce.png'
 import SikalCommerce from '../../assets/work-images/SikalCommerce.png'
 import Button from "../button/button.component";
 

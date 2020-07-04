@@ -655,7 +655,7 @@ figure {
 
 .view.dark .contact-form > form > div {
   > input, textarea {
-    background-color: #421254;
+    background-color: #1C1D25;
     color: lighten(#1C1D25, 25%);
 
     &.submit-button {
@@ -677,10 +677,10 @@ figure {
 }
 
 .view.dark .contact-form > form > button {
-  border: 0.1rem solid #421254 !important;
+  border: 0.1rem solid #1C1D25 !important;
 
   &:hover {
-    background-color: #421254;
+    background-color: #1C1D25;
   }
 }
 
@@ -698,7 +698,7 @@ figure {
     border: 3px solid #C4C4C6;
 
     &:before {
-      border-bottom-color: $color-main-dark-purple;
+      border-bottom-color: $color-secondary-dark;
     }
   }
 
@@ -751,7 +751,7 @@ figure {
 
   &:after {
     z-index: 1;
-    border-bottom-color: $color-main-light-purple;
+    border-bottom-color: $color-secondary-dark;
     transition: transform .5s .9s;
   }
 

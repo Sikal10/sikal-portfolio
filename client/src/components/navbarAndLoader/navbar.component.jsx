@@ -6,10 +6,12 @@ import {ReactComponent as LinkedIn} from "../../assets/images/linkedin.svg";
 import {ReactComponent as Github} from "../../assets/images/github.svg";
 import {ReactComponent as Codepen} from "../../assets/images/codepen.svg";
 import {ReactComponent as Home} from "../../assets/images/home.svg";
-import {ReactComponent as About} from "../../assets/images/contact.svg";
-import {ReactComponent as Skills} from "../../assets/images/code_icon.svg";
-import {ReactComponent as Works} from "../../assets/images/work.svg";
-import {ReactComponent as Contact} from "../../assets/images/mail.svg";
+import {ReactComponent as About} from "../../assets/images/person-white-48dp.svg";
+import {ReactComponent as Skills} from "../../assets/images/engineering-white-48dp.svg";
+
+
+import {ReactComponent as Works} from "../../assets/images/folder_open-white-48dp.svg";
+import {ReactComponent as Contact} from "../../assets/images/mail_outline-white-48dp.svg";
 
 import './navbarAndLoader.styles.scss';
 

@@ -21,7 +21,7 @@ $loading-line-offset-down-flat: calc(#{-$loading-line-length-flat} - 100vh);
 $loading-line-offset-right-tablet: calc(-100vw + 20px);
 
 .site-loader.dark .line {
-  border-color: $color-main-dark-purple;
+  border-color: $color-secondary-dark;
 }
 
 .line {
@@ -127,7 +127,8 @@ nav {
     }
   }
   &.dark {
-    background-color: $color-main-dark-purple;
+    background-color: $color-secondary-dark;
+
   }
   .nav-wrapper {
     position: absolute;
