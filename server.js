@@ -12,12 +12,14 @@ if (process.env.NODE_ENV !== 'production' ) require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors({origin: 'http://localhost:3000'}))
+let CORS_OriginURL = process.env.NODE_ENV === 'production' ? 'https://codesikal.herokuapp.com' : 'http://localhost:3000';
+
+app.use(cors({origin: CORS_OriginURL}))
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-// app.use(enforce.HTTPS({trustProtoHeader: true}));
+if (process.env.NODE_ENV === 'production' ) app.use(enforce.HTTPS({trustProtoHeader: true}));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'client/build')));
@@ -60,7 +62,7 @@ app.post('/send', (req, res) => {
 
     let mail = {
         from: name,
-        to: 'sikal.sikal.ss@gmail.com',
+        to: `${process.env.USER_EMAIL}`,
         subject: subject,
         text: content
     };
