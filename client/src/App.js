@@ -134,7 +134,7 @@ const App = ({location: {pathname}}) => {
     // Form submit handler
     const handleFormSubmit = e => {
         let url;
-        process.env.NODE_ENV === 'production' ?  url = `https://codesurge.herokuapp.com/send`
+        process.env.NODE_ENV === 'production' ?  url = `https://codesikal.herokuapp.com/send`
             : url = "http://localhost:8000/send";
         const name = nameRef.current.value, email = emailRef.current.value,
             message = messageRef.current.value;
